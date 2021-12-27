@@ -1,0 +1,123 @@
+set ideajoin
+set vim-paragraph-motion
+set highlightedyank
+set textobj-indent
+set idearefactormode=keep
+set matchit
+set ideamarks
+set multiple-cursors
+
+" easymotion
+set easymotion
+let g:EasyMotion_override_acejump = 0
+let g:EasyMotion_do_mapping = 0
+map z <Plug>(easymotion-s)
+
+set clipboard=unnamedplus
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set number
+set showcmd
+
+let mapleader = ' '
+
+" remove highlights on enter
+nnoremap <CR> :noh<CR><CR>
+" don't yank overridden text when pasting in visual mode
+vnoremap p "_dP
+
+" jetbrains smart select/unselect
+nmap s <Action>(EditorSelectWord)
+nmap S <Action>(EditorUnSelectWord)
+vmap s <Action>(EditorSelectWord)
+vmap S <Action>(EditorUnSelectWord)
+
+" vim surround 
+set surround
+let g:surround_no_mappings = 1
+nmap ds <Plug>DSurround
+nmap cs <Plug>CSurround
+nmap gs <Plug>YSurround
+vmap gs <Plug>VSurround
+
+"leader + mnemonic mappings
+
+" compile
+map <Leader>c <Action>(BuildProject)
+" run Program
+map <Leader>p <Action>(RunClass)
+" debug
+map <leader>d <Action>(Debug)
+" stop
+map <leader>s <Action>(Stop)
+" inspect
+map <Leader>i <Action>(ShowErrorDescription)
+" tree
+map <leader>t <Action>(SelectInProjectView)
+" order
+map <leader>o <Action>(ReformatCode)
+" annotate
+map <leader>a <Action>(Annotate)
+" usages
+map <leader>u <Action>(FindUsages)
+" number
+map <leader>n :set relativenumber!<CR>
+" history
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+" line
+map <leader>l <Action>(ToggleLineBreakpoint)
+" reload
+map <leader>r <Action>(IdeaVim.ReloadVimRc.reload)
+
+" toggle case
+map gh <Action>(StringManipulation.ToggleCase)<ESC>
+
+" navigation
+
+" navigate history
+map <S-h> <Action>(Back)
+map <S-l> <Action>(Forward)
+" navigate errors
+map gj <Action>(GotoNextError)
+map gk <Action>(GotoPreviousError)
+" navigate local changes
+map gm <Action>(VcsShowNextChangeMarker)
+map g, <Action>(VcsShowPrevChangeMarker)
+" global search
+map <leader><leader> <Action>(FindInPath)
+" CamelCase/snake_case word motions
+map <leader>w [w
+map <leader>b [b
+map <leader>e ]w
+map <leader>ge ]b
+" multiple cursors
+map <A-k> <Action>(EditorCloneCaretAbove)
+map <A-j> <Action>(EditorCloneCaretBelow)
+map <A-.> <Plug>AllWholeOccurrences
+map <C-A-n> <Plug>NextOccurrence
+map <C-A-m> <Plug>AllOccurrences
+map <C-A-l> <Action>(EditorAddCaretPerSelectedLine)
+
+" panes
+map <C-A-j> <Action>(NextSplitter)
+map <C-A-k> <Action>(PrevSplitter)
+
+" refactor
+map <leader>v <Action>(IntroduceVariable)
+map gf <Action>(ExtractMethod)
+map gr <Action>(RenameElement)
+
+" Indent keeping selection
+vnoremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
+" Reselect pasted text
+nnoremap gp `[v`]
+
+" Make Y consistent with other capital letter actions (A, C, D...)
+nnoremap Y y$
+xnoremap Y y$
+
